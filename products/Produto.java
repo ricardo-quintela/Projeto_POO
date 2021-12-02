@@ -48,6 +48,12 @@ public class Produto {
     public void setStock(int stock) {
         this.stock = stock;
     }
+    
+     /*
+    public Promocao getPromo(){return promo;}
+
+    public void setPromo(Promocao promo){this.promo=promo;}
+    */
 
     @Override
     public String toString() {
