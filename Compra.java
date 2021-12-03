@@ -1,18 +1,27 @@
-
 import products.Produto;
-
 import java.util.ArrayList;
 
 public class Compra {
-    private ArrayList<Produto> listaProdutos;
+    private ArrayList<Produto> listaProdutos = new ArrayList<>();
     private Cliente cliente;
 
-    public Compra(){}
+    /**
+     * Default constructor
+     */
+    public Compra() {}
 
-    public Compra(ArrayList<Produto> listaProdutos,Cliente cliente){
-        this.listaProdutos=listaProdutos;
-        this.cliente=cliente ;
+
+    /**
+     * Constructor
+     *
+     * @param listaProdutos the list of products
+     * @param cliente the client that made the purchase
+     */
+    public Compra(ArrayList<Produto> listaProdutos, Cliente cliente) {
+        this.listaProdutos = listaProdutos;
+        this.cliente = cliente;
     }
+
 
     public ArrayList<Produto> getListaProdutos() {
         return listaProdutos;
@@ -21,8 +30,6 @@ public class Compra {
     public void setListaProdutos(ArrayList<Produto> listaProdutos) {
         this.listaProdutos = listaProdutos;
     }
-
-
 
     public Cliente getCliente() {
         return cliente;
@@ -37,7 +44,7 @@ public class Compra {
     public String toString() {
         return "Compra{" +
                 "listaProdutos=" + listaProdutos +
-                "cliente=" + cliente +
+                ", cliente=" + cliente +
                 '}';
     }
 }
