@@ -1,9 +1,15 @@
 package data;
 
+import java.util.InputMismatchException;
+
 public class Email {
     private String endereco;
     private String domain;
 
+
+    /**
+     * Default constructor
+     */
     public Email() {}
 
 
@@ -12,7 +18,7 @@ public class Email {
      *
      * @param endereco the e-mail address
      */
-    public Email(String endereco) {
+    public Email(String endereco) throws InputMismatchException{
         this.endereco = endereco;
         this.domain = genDomain(endereco);
     }
@@ -36,8 +42,13 @@ public class Email {
      * @param endereco the email address
      * @return the domain of the email address
      */
-    public String genDomain(String endereco){
+    public String genDomain(String endereco) throws InputMismatchException{
         int i = endereco.indexOf('@');
+
+        if (i == -1){
+            System.out.println("Erro! Endereço de Email invalido!");
+            throw new InputMismatchException();
+        }
 
         return endereco.substring(i);
     }
