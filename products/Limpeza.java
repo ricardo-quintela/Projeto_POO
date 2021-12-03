@@ -7,7 +7,7 @@ public class Limpeza extends Produto{
         super(id, nome, precoUnit, stock/*, promo*/);
 
         if(0<=grauTox && grauTox < 11){
-        this.grauTox=grauTox;}
+            this.grauTox=grauTox;}
     }
 
     public int getGrauTox() {
@@ -24,4 +24,3 @@ public class Limpeza extends Produto{
                 "e tem grau de toxicidade" + grauTox;
     }
 }
-
