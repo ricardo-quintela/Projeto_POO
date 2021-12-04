@@ -25,19 +25,15 @@ public class Database {
         return clientesFrequentes;
     }
 
-    public void setClientesFrequentes(ArrayList<Cliente> clientesFrequentes){
-        this.clientesFrequentes = clientesFrequentes;
-    }
+    public void setClientesFrequentes(ArrayList<Cliente> clientesFrequentes){this.clientesFrequentes = clientesFrequentes;}
+
+
 
     public Cliente getClienteF(int index){
         return clientesFrequentes.get(index);
     }
 
-
-    public void addClienteF(Cliente cliente){
-        clientesFrequentes.add(cliente);
-
-    }
+    public void addClienteF(Cliente cliente){clientesFrequentes.add(cliente);}
 
     public void removeClienteF(int index){
         clientesFrequentes.remove(index);
@@ -54,18 +50,20 @@ public class Database {
 
     public ArrayList<Cliente> getClientesRegulares(){return clientesRegulares;}
 
-    public void setClientesRegulares(ArrayList<Cliente> clientesRegulares){
-        this.clientesRegulares = clientesRegulares;
-    }
+    public void setClientesRegulares(ArrayList<Cliente> clientesRegulares){this.clientesRegulares = clientesRegulares;}
+
+
 
     public Cliente getClienteR(int index){
         return clientesRegulares.get(index);
     }
 
+    public void addClienteR(Cliente cliente){clientesRegulares.add(cliente);}
 
-    public void addClienteR(Cliente cliente){
-        clientesRegulares.add(cliente);
+    public void removeClienteR(int index){clientesRegulares.remove(index);}
 
+    public void clearClienteR(){
+        clientesRegulares.clear();
     }
 
 
@@ -79,10 +77,11 @@ public class Database {
         this.produtos = produtos;
     }
 
+    
+
     public Produto getProduto(int index){
         return produtos.get(index);
     }
-
 
     public void addProduto(Produto produto){
         produtos.add(produto);
