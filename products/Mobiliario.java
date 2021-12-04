@@ -15,7 +15,8 @@ public class Mobiliario extends Produto{
      * @param peso the weight of the product
      * @param dimensao the size of the product
      */
-    public Mobiliario(float peso, float[] dimensao) {
+    public Mobiliario(int id,String nome, float precoUnit,int stock /*,Promocao promo*/, float peso, float[] dimensao) {
+        super(id, nome, precoUnit, stock/*, promo*/);
         this.peso = peso;
         this.dimensao = dimensao;
     }
