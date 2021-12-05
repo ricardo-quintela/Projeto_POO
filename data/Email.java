@@ -1,8 +1,9 @@
 package data;
 
+import java.io.Serializable;
 import java.util.InputMismatchException;
 
-public class Email {
+public class Email implements Serializable {
     private String endereco;
     private String domain;
 

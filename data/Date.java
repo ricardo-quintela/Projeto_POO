@@ -1,5 +1,7 @@
 package data;
 
+import java.io.Serializable;
+
 /**
  * <h1> data.Data </h1>
  * Class to easily store a date
@@ -11,7 +13,7 @@ package data;
  *
  * @author Ricardo Quintela Martins Santos Rosa - 2020220508
  */
-public class Date {
+public class Date implements Serializable {
     private int dia, mes, ano;
 
     public Date(){}
