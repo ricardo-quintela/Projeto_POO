@@ -1,6 +1,8 @@
 package products;
 
-public class Mobiliario extends Produto{
+import java.io.Serializable;
+
+public class Mobiliario extends Produto implements Serializable {
     private float peso;
     private float[] dimensao;
 
