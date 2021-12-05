@@ -21,12 +21,7 @@ public class Alimentar extends Produto {
      * @param stock     the units in stock
      */
     public Alimentar(int id, String nome, float precoUnit, int stock /*,Promocao promo*/) {
-        this.id = id;
-        this.nome = nome;
-        this.precoUnit = precoUnit;
-        this.stock = stock;
-        this.promo = null;
-        /* this.promo=promo;*/
+        super(id, nome, precoUnit, stock);
     }
 
 
