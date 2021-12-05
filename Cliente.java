@@ -1,7 +1,9 @@
 import data.Email;
 import data.Date;
 
-public class Cliente {
+import java.io.Serializable;
+
+public class Cliente implements Serializable {
     private String nome, morada;
     private Email email;
     private int telefone;
