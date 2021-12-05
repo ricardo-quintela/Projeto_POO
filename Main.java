@@ -1,12 +1,9 @@
-import Files.ObjFileWorker;
-import Files.TextFileWorker;
 import data.Email;
 import data.Date;
 import products.Alimentar;
 import products.Limpeza;
 import products.Mobiliario;
 import products.Produto;
-import promotions.Promocao;
 
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
@@ -118,7 +115,7 @@ public class Main {
 
         //if it doesnt the a new account must be created
         if (!isRegistered) {
-            System.out.print("Cliente não existe. Intruduza dados do novo cliente:");
+            System.out.println("Cliente não existe. Intruduza dados do novo cliente:");
 
             //name and address
             String nome = getInput("Introduza o seu nome >>>");
