@@ -1,4 +1,4 @@
-package Files;
+package files;
 
 import java.io.*;
 
@@ -20,10 +20,6 @@ public class TextFileWorker {
     public TextFileWorker(String path) {
         this.f = new File(path);
 
-        if (!f.exists()) {
-            System.out.println("Erro! Ficheiro nao existe!");
-            this.f = null;
-        }
     }
 
 
@@ -48,11 +44,6 @@ public class TextFileWorker {
      * @param text the text to write on the file
      */
     public void write(String text) {
-        //only write if the file exists
-        if (this.f == null) {
-            System.out.println("Erro! Ficheiro nao existe!");
-            return;
-        }
 
         //open buffers and write on the file
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(this.f))) {
@@ -70,8 +61,8 @@ public class TextFileWorker {
      */
     public String read(){
         //only read if the file exists
-        if (this.f == null) {
-            System.out.println("Erro! Ficheiro nao existe!");
+        if (! this.f.exists()) {
+            System.out.println("Erro! Ocorreu um erro ao ler os dados guardados!");
             return null;
         }
 

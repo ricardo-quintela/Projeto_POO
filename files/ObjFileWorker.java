@@ -1,4 +1,4 @@
-package Files;
+package files;
 
 import java.io.*;
 
@@ -19,11 +19,6 @@ public class ObjFileWorker {
      */
     public ObjFileWorker(String path) {
         this.f = new File(path);
-
-        if (!f.exists()) {
-            System.out.println("Erro! Ficheiro nao existe!");
-            this.f = null;
-        }
     }
 
 
@@ -48,11 +43,6 @@ public class ObjFileWorker {
      * @param o the Object to save on the file
      */
     public void write(Object o) {
-        //only write if the file exists
-        if (this.f == null) {
-            System.out.println("Erro! Ficheiro nao existe!");
-            return;
-        }
 
         //open buffers and write on the file
         try (ObjectOutputStream oOS = new ObjectOutputStream(new FileOutputStream(this.f))) {
@@ -71,8 +61,8 @@ public class ObjFileWorker {
      */
     public Object read() {
         //only read if the file exists
-        if (this.f == null) {
-            System.out.println("Erro! Ficheiro nao existe!");
+        if (! this.f.exists()) {
+            System.out.println("Erro! Ocorreu um erro ao ler os dados guardados!");
             return null;
         }
 
