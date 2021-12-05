@@ -8,6 +8,19 @@ public class Mobiliario extends Produto {
      * Default constructor
      */
     public Mobiliario() {}
+    
+    
+    /**
+     * Product Constructor
+     *
+     * @param id        the id
+     * @param nome      the name of the product
+     * @param precoUnit the price of each unit
+     * @param stock     the units in stock
+     */
+    public Alimentar(int id, String nome, float precoUnit, int stock /*,Promocao promo*/) {
+        super(id, nome, precoUnit, stock);
+    }
 
 
     /**
