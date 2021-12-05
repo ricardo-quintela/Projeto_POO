@@ -2,20 +2,31 @@ package products;
 
 import promotions.Promocao;
 
-public class Produto {
+import java.io.Serializable;
+
+public class Produto implements Serializable {
     protected int id;
     protected String nome;
     protected float precoUnit;
     protected int stock;
     protected Promocao promo;
 
-    public Produto(){}
+    public Produto() {
+    }
 
-    public Produto(int id,String nome, float precoUnit,int stock /*,Promocao promo*/){
-        this.id=id;
-        this.nome=nome;
-        this.precoUnit=precoUnit;
-        this.stock=stock;
+    /**
+     * Constructor
+     *
+     * @param id the id
+     * @param nome the name of the product
+     * @param precoUnit the price of each unit
+     * @param stock the units in stock
+     */
+    public Produto(int id, String nome, float precoUnit, int stock /*,Promocao promo*/) {
+        this.id = id;
+        this.nome = nome;
+        this.precoUnit = precoUnit;
+        this.stock = stock;
         this.promo = null;
         /* this.promo=promo;*/
     }
@@ -52,19 +63,23 @@ public class Produto {
         this.stock = stock;
     }
 
-    public Promocao getPromo(){return promo;}
+    public Promocao getPromo() {
+        return promo;
+    }
 
-    public void setPromo(Promocao promo){this.promo=promo;}
+    public void setPromo(Promocao promo) {
+        this.promo = promo;
+    }
 
 
     @Override
     public String toString() {
         String ret = nome +
-                    "tem codigo " + id +
-                    ", preco unidade " + precoUnit +
-                    ", existe " + stock + nome+"s ";
+                "tem codigo " + id +
+                ", preco unidade " + precoUnit +
+                ", existe " + stock + nome + "s ";
 
-        if (promo != null){
+        if (promo != null) {
             return ret;
         }
 

@@ -1,13 +1,44 @@
 package products;
 
-public class Limpeza extends Produto{
+public class Limpeza extends Produto {
     private int grauTox;
-    public Limpeza(int id,String nome, float precoUnit,int stock /*,Promocao promo*/,int grauTox){
+
+    public Limpeza() {
+    }
+
+    /**
+     * Product Constructor
+     *
+     * @param id        the id
+     * @param nome      the name of the product
+     * @param precoUnit the price of each unit
+     * @param stock     the units in stock
+     */
+    public Limpeza(int id, String nome, float precoUnit, int stock /*,Promocao promo*/) {
+        this.id = id;
+        this.nome = nome;
+        this.precoUnit = precoUnit;
+        this.stock = stock;
+        this.promo = null;
+        /* this.promo=promo;*/
+    }
+
+    /**
+     * Constructor
+     *
+     * @param id        the id
+     * @param nome      the name of the product
+     * @param precoUnit the price of each unit
+     * @param stock     the units in stock
+     * @param grauTox   the degree of toxicity
+     */
+    public Limpeza(int id, String nome, float precoUnit, int stock /*,Promocao promo*/, int grauTox) {
 
         super(id, nome, precoUnit, stock/*, promo*/);
 
-        if(0<=grauTox && grauTox < 11){
-            this.grauTox=grauTox;}
+        if (0 <= grauTox && grauTox < 11) {
+            this.grauTox = grauTox;
+        }
     }
 
     public int getGrauTox() {
@@ -20,7 +51,7 @@ public class Limpeza extends Produto{
 
     @Override
     public String toString() {
-        return  super.toString() +
+        return super.toString() +
                 "e tem grau de toxicidade" + grauTox;
     }
 }
