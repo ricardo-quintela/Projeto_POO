@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import products.*;
+import files.*;
 
 public class Database {
     private ArrayList<Cliente> clientesFrequentes;
@@ -99,7 +100,9 @@ public class Database {
 /**
      * Saves the contents of the database to a file
      *
-     * @param path the path of the file
+     * @param clientesR the path of the clients file
+     * @param clientesF the path of the frequent clients file
+     * @param produtos the path of the products file
      */
     public void saveToFile(String clientesR, String clientesF, String produtos) {
         ObjFileWorker regularSaveFile = new ObjFileWorker(clientesR);
