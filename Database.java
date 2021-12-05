@@ -96,5 +96,43 @@ public class Database {
     }
 
 
+/**
+     * Saves the contents of the database to a file
+     *
+     * @param path the path of the file
+     */
+    public void saveToFile(String clientesR, String clientesF, String produtos) {
+        ObjFileWorker regularSaveFile = new ObjFileWorker(clientesR);
+        ObjFileWorker frequentSaveFile = new ObjFileWorker(clientesF);
+        ObjFileWorker productSaveFile = new ObjFileWorker(produtos);
+
+        regularSaveFile.write(this.clientesRegulares);
+        frequentSaveFile.write(this.clientesFrequentes);
+        productSaveFile.write(this.produtos);
+    }
+
+    /**
+     * Loads the contents of the database saved on a file to memory
+     *
+     * @param clientesF the path of the clients file
+     * @param clientesR the path of the frequent clients file
+     * @param produtos the path of the products file
+     */
+    public void loadFromFile(String clientesR, String clientesF, String produtos) {
+        ObjFileWorker regularSaveFile = new ObjFileWorker(clientesR);
+        ObjFileWorker frequentSaveFile = new ObjFileWorker(clientesF);
+        ObjFileWorker productSaveFile = new ObjFileWorker(produtos);
+
+        ArrayList<Cliente> c = (ArrayList<Cliente>) regularSaveFile.read();
+        ArrayList<Cliente> cf = (ArrayList<Cliente>) frequentSaveFile.read();
+        ArrayList<Produto> p = (ArrayList<Produto>) productSaveFile.read();
+
+        this.clientesRegulares = c == null ? new ArrayList<>() : c;
+        this.clientesFrequentes = cf == null ? new ArrayList<>() : cf;
+        this.produtos = p == null ? new ArrayList<>() : p;
+
+
+    }
 
 }
+
