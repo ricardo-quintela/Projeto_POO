@@ -105,7 +105,18 @@ public class Main {
         //check if account already exists
         boolean isRegistered = false;
         Cliente cliente = null;
+
+        //search for clients with the same email
         for (Cliente c : supermercado.getClientesRegulares()) {
+            if (c.getEmail().toString().equals(email.toString())) {
+                isRegistered = true;
+                cliente = c;
+                break;
+            }
+        }
+
+        //search for frequent clients with the same mail
+        for (Cliente c : supermercado.getClientesFrequentes()) {
             if (c.getEmail().toString().equals(email.toString())) {
                 isRegistered = true;
                 cliente = c;
@@ -209,7 +220,7 @@ public class Main {
                 supermercado.addProduto(a);
                 break;
 
-                //add a cleaning product
+            //add a cleaning product
             case 2:
                 Limpeza l = (Limpeza) genProduct(productType);
                 l.setGrauTox(positiveToInt("Grau de toxidade >>>"));
@@ -217,7 +228,7 @@ public class Main {
                 supermercado.addProduto(l);
                 break;
 
-                //add a furniture product
+            //add a furniture product
             case 3:
                 Mobiliario m = (Mobiliario) genProduct(productType);
                 m.setPeso(positiveToFloat("Peso >>>"));
@@ -231,17 +242,125 @@ public class Main {
 
 
     /**
+     * Adds a new product from the products database to the given purchase list
+     *
+     * @param index        the index of the product to add
+     * @param quantity     the quantity of products to buy
+     * @param supermercado the database
+     * @param p     the purchase list
+     */
+    public static void buy(int index, int quantity, Database supermercado, Compra p) {
+        //product from the database
+        Produto prodInStock = supermercado.getProduto(index);
+
+        //requested product
+        Produto product = (Produto) prodInStock.clone();
+
+        //quantity bigger than stock handeling
+        if (quantity >= prodInStock.getStock()) {
+            product.setStock(prodInStock.getStock());
+            supermercado.removeProduto(index);
+        } else {
+            //eliminate product from the database if stock ends
+            product.setStock(quantity);
+            prodInStock.setStock(prodInStock.getStock() - quantity);
+        }
+
+        //add product to the purchase
+        p.addProduto(product);
+
+        System.out.println("Comprado: " + product);
+
+    }
+
+
+    /**
+     * Purchase an item from the given products database
+     *
+     * @param cliente      the client that is going to buy
+     * @param supermercado the database
+     * @return the purchase
+     */
+    public static Compra purchase(Cliente cliente, Database supermercado) {
+        Compra p = new Compra(cliente);
+
+        int option;
+        int quantity;
+
+        do {
+            String products = "";
+            for (int i = 0; i < supermercado.getProdutos().size(); ++i) {
+                products = products.concat("\n" + (i + 1) + " - " + supermercado.getProduto(i));
+            }
+
+            //ask for input
+            do {
+                option = positiveToInt("Escolha um produto para comprar:\n" + products + "\n" + (supermercado.getProdutos().size() + 1) + " - Finalizar compra\n>>>");
+
+                //wrong value
+                if (option > supermercado.getProdutos().size() + 1) {
+                    System.out.println("Erro! Entrada Invalida!");
+                }
+
+            } while (option > supermercado.getProdutos().size() + 1);
+
+            //continue to buy products
+            if (option <= supermercado.getProdutos().size()) {
+
+                quantity = 0;
+                //chose the quantity of products to buy
+                while (quantity == 0) {
+
+                    quantity = positiveToInt("Quantos deseja comprar >>>");
+
+                    //cant buy 0 products
+                    if (quantity == 0) {
+                        System.out.println("Entrada Invalida!");
+                    }
+
+                }
+
+                //buy thw wanted product
+                if (option <= supermercado.getProdutos().size()) {
+                    buy(option - 1, quantity, supermercado, p);
+                }
+
+            }
+        } while (option < supermercado.getProdutos().size() + 1);
+
+        //only purchase if list elements exist
+        if (p.getListaProdutos().size() > 0) {
+
+            System.out.println(p.getListaProdutos());
+
+            p.calcCustoFinal(supermercado.getClientesFrequentes());
+            System.out.println("Fatura:\n" + p);
+        }
+
+        return p;
+    }
+
+
+    /**
      * Main method where all the others are going to be called
      *
      * @param args command line args
      */
     public static void main(String[] args) {
 
-        //base de dados
+        //database
         Database supermercado = new Database();
-        supermercado.loadFromFile("src/clientes.txt", "src/clientesFreq.txt", "src/produtos.txt");
 
-        //efetuar login
+        //load from object files
+        boolean isData = supermercado.loadFromFile("src/clientes.obj", "src/clientesFreq.obj", "src/produtos.obj");
+
+
+        //load from text file
+        if (!isData) {
+            supermercado.initSetup("src/initialSetup.txt");
+        }
+
+        //login
         Cliente cliente = login(supermercado);
 
         //select what to do in the program
@@ -255,7 +374,7 @@ public class Main {
 
             switch (option) {
                 case 1:
-                    System.out.println("Opcao 1");
+                    purchase(cliente, supermercado);
                     break;
 
                 //add a new product to the database
@@ -269,8 +388,9 @@ public class Main {
 
         System.out.println("Programa terminado!");
 
+
         //save the data on the database savefile
-        supermercado.saveToFile("src/clientes.txt", "src/clientesFreq.txt", "src/produtos.txt");
+        supermercado.saveToFile("src/clientes.obj", "src/clientesFreq.obj", "src/produtos.obj");
 
     }
 }

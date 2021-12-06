@@ -1,0 +1,8 @@
+3;Ricardo Quintela;Cemiterio;ricardo.dev185@gmail.com;913536503;3;5;2002
+4;Andre Colaco;Bombeiros;colaco@gmail.com;910000000;3;9;2002
+4;Joao Henriques;Entroncamento;joao@gmail.com;910000001;14;1;2002
+3;Lino Rafael;Lidl;lino@hotmail.com;910000002;10;6;2002
+3;Hugo Priva;Continente;hugo@proton.pt;913536503;28;11;2002
+0;1;Alface;1.1;10;10;0
+1;2;Sabao;2.1;10;9
+2;3;Cadeira;10;40;5;30;30;50

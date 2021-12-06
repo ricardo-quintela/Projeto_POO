@@ -1,0 +1,209 @@
+{
+    "Promocao": {
+        "pos": [
+            313,
+            449
+        ],
+        "color": [
+            255,
+            231,
+            0
+        ],
+        "attributes": [],
+        "methods": [],
+        "parent": null
+    },
+    "Alimentar": {
+        "pos": [
+            596,
+            295
+        ],
+        "color": [
+            0,
+            15,
+            255
+        ],
+        "attributes": [
+            "-nCalorias: int",
+            "-percentGordura: int"
+        ],
+        "methods": [],
+        "parent": "Produto"
+    },
+    "Data": {
+        "pos": [
+            1305,
+            44
+        ],
+        "color": [
+            249,
+            255,
+            0
+        ],
+        "attributes": [
+            "-dia: int",
+            "-mes: int",
+            "-ano: int"
+        ],
+        "methods": [
+            "+validData(): boolean"
+        ],
+        "parent": null
+    },
+    "Pague3lv4": {
+        "pos": [
+            161,
+            527
+        ],
+        "color": [
+            255,
+            237,
+            0
+        ],
+        "attributes": [],
+        "methods": [],
+        "parent": "Promocao"
+    },
+    "Cliente": {
+        "pos": [
+            189,
+            67
+        ],
+        "color": [
+            255,
+            237,
+            0
+        ],
+        "attributes": [
+            "-nome: String",
+            "-morada: String",
+            "-email: Email",
+            "-telefone: int",
+            "-dataNasc: Data"
+        ],
+        "methods": [],
+        "parent": null
+    },
+    "PagueMenos": {
+        "pos": [
+            436,
+            522
+        ],
+        "color": [
+            255,
+            249,
+            0
+        ],
+        "attributes": [],
+        "methods": [],
+        "parent": "Promocao"
+    },
+    "Database": {
+        "pos": [
+            947,
+            452
+        ],
+        "color": [
+            252,
+            255,
+            0
+        ],
+        "attributes": [
+            "-clientesFrequentes: ArrayList<Cliente>",
+            "-produtos: ArrayList<Produto>",
+            "-clientesRegulares: ArrayList<Cliente>"
+        ],
+        "methods": [],
+        "parent": null
+    },
+    "Mobiliario": {
+        "pos": [
+            659,
+            479
+        ],
+        "color": [
+            255,
+            237,
+            0
+        ],
+        "attributes": [
+            "-peso: float",
+            "-dimensao: float[]"
+        ],
+        "methods": [],
+        "parent": "Produto"
+    },
+    "Limpeza": {
+        "pos": [
+            985,
+            279
+        ],
+        "color": [
+            0,
+            3,
+            255
+        ],
+        "attributes": [
+            "-grauTox: int"
+        ],
+        "methods": [],
+        "parent": "Produto"
+    },
+    "Email": {
+        "pos": [
+            465,
+            45
+        ],
+        "color": [
+            255,
+            252,
+            0
+        ],
+        "attributes": [
+            "-endereco: String"
+        ],
+        "methods": [
+            "+checkEndereco: boolean"
+        ],
+        "parent": null
+    },
+    "Compra": {
+        "pos": [
+            22,
+            619
+        ],
+        "color": [
+            0,
+            3,
+            255
+        ],
+        "attributes": [
+            "-listaProdutos: ArrayList<Produto>",
+            "-cliente: Cliente"
+        ],
+        "methods": [
+            "+clacCustoTotal(boolean): float"
+        ],
+        "parent": null
+    },
+    "Produto": {
+        "pos": [
+            799,
+            25
+        ],
+        "color": [
+            18,
+            0,
+            255
+        ],
+        "attributes": [
+            "#id: int",
+            "#nome: String",
+            "#precoUnit: float",
+            "#sotck: int",
+            "#promocao: Promocao"
+        ],
+        "methods": [],
+        "parent": null
+    }
+}
