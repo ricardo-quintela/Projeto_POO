@@ -8,8 +8,8 @@ public class Mobiliario extends Produto {
      * Default constructor
      */
     public Mobiliario() {}
-    
-    
+
+
     /**
      * Product Constructor
      *

@@ -4,7 +4,7 @@ import promotions.Promocao;
 
 import java.io.Serializable;
 
-public class Produto implements Serializable {
+public class Produto implements Serializable, Cloneable {
     protected int id;
     protected String nome;
     protected float precoUnit;
@@ -17,10 +17,10 @@ public class Produto implements Serializable {
     /**
      * Constructor
      *
-     * @param id the id
-     * @param nome the name of the product
+     * @param id        the id
+     * @param nome      the name of the product
      * @param precoUnit the price of each unit
-     * @param stock the units in stock
+     * @param stock     the units in stock
      */
     public Produto(int id, String nome, float precoUnit, int stock /*,Promocao promo*/) {
         this.id = id;
@@ -75,14 +75,25 @@ public class Produto implements Serializable {
     @Override
     public String toString() {
         String ret = nome +
-                "tem codigo " + id +
+                " tem codigo " + id +
                 ", preco unidade " + precoUnit +
-                ", existe " + stock + nome + "s ";
+                ", existe " + stock;
 
         if (promo != null) {
             return ret;
         }
 
         return ret + ", aplicada a promocao " + promo;
+    }
+
+
+    @Override
+    public Object clone() {
+        try {
+            return super.clone();
+        } catch (CloneNotSupportedException e){
+            System.out.println("Erro! Impossivel clonar produto!");
+            return null;
+        }
     }
 }
