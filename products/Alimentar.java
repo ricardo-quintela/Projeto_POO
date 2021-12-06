@@ -44,10 +44,7 @@ public class Alimentar extends Produto {
 
     }
     
-    @Override
-    public float peso() {
-        return 0;
-    }
+   }
 
     public int getnCal() {
         return nCal;
