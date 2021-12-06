@@ -33,6 +33,11 @@ public class Mobiliario extends Produto {
         this.peso = peso;
         this.dimensao = dimensao;
     }
+    
+    @Override
+    public float peso() {
+        return peso;
+    }
 
 
     public float getPeso() {
