@@ -4,8 +4,8 @@ import data.Date;
 import products.Produto;
 
 public class PagueMenos extends Promocao{
-    public PagueMenos(Date dataExp){
-        super(dataExp);
+    public PagueMenos(Date dataExp,Date dataInc){
+        super(dataExp,dataInc);
     }
     public PagueMenos(Produto produto,Date dataExp){
         super(produto,dataExp);

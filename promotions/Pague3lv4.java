@@ -4,8 +4,8 @@ import data.Date;
 import products.Produto;
 
 public class Pague3lv4 extends Promocao{
-    public Pague3lv4(Date dataExp){
-        super(dataExp);
+    public Pague3lv4(Date dataExp,Date dataInc){
+        super(dataExp,dataInc);
     }
     public Pague3lv4(Produto produto,Date dataExp){
         super(produto,dataExp);
