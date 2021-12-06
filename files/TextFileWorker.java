@@ -1,6 +1,7 @@
 package files;
 
 import java.io.*;
+import java.util.ArrayList;
 
 public class TextFileWorker {
     private File f;
@@ -59,18 +60,24 @@ public class TextFileWorker {
      * Reads the contents of the file
      * @return the file contents
      */
-    public String read(){
+    public ArrayList<String> read(){
         //only read if the file exists
         if (! this.f.exists()) {
             System.out.println("Erro! Ocorreu um erro ao ler os dados guardados!");
             return null;
         }
 
-        String text = null;
+        String line = null;
+        ArrayList<String> text = new ArrayList<>();
         //open buffers and read the file
         try (BufferedReader br = new BufferedReader(new FileReader(this.f))) {
             //write the text on the file
-            text = br.readLine();
+            do {
+                line = br.readLine();
+                if (line != null){
+                    text.add(line);
+                }
+            }while (line != null);
 
         } catch (IOException e) {
             text = null;
