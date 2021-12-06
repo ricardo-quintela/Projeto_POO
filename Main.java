@@ -331,8 +331,6 @@ public class Main {
         //only purchase if list elements exist
         if (p.getListaProdutos().size() > 0) {
 
-            System.out.println(p.getListaProdutos());
-
             p.calcCustoFinal(supermercado.getClientesFrequentes());
             System.out.println("Fatura:\n" + p);
         }
