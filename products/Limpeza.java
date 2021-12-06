@@ -35,10 +35,7 @@ public class Limpeza extends Produto {
             this.grauTox = grauTox;
         }
     }
-    @Override
-    public float peso() {
-        return 0;
-    }
+    
 
     public int getGrauTox() {
         return grauTox;
