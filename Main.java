@@ -247,7 +247,7 @@ public class Main {
      * @param index        the index of the product to add
      * @param quantity     the quantity of products to buy
      * @param supermercado the database
-     * @param p     the purchase list
+     * @param p            the purchase list
      */
     public static void buy(int index, int quantity, Database supermercado, Compra p) {
         //product from the database
@@ -340,11 +340,30 @@ public class Main {
 
 
     /**
+     * Sets a new date with user input
+     *
+     * @param date the previous date
+     */
+    public static void setDate(Date date) {
+        System.out.println("Data antiga: " + date);
+
+        date.setDia(positiveToInt("Dia >>>"));
+        date.setMes(positiveToInt("Mes >>>"));
+        date.setAno(positiveToInt("Ano >>>"));
+
+        System.out.println("Data alterada para " + date);
+    }
+
+
+    /**
      * Main method where all the others are going to be called
      *
      * @param args command line args
      */
     public static void main(String[] args) {
+
+        //set the date
+        Date data = new Date(1, 1, 1);
 
         //database
         Database supermercado = new Database();
@@ -364,9 +383,9 @@ public class Main {
         //select what to do in the program
         int option;
         do {
-            option = positiveToInt("O que deseja fazer?\n1 - Comprar\n2 - Adiconar produto\n3 - Sair\n>>>");
+            option = positiveToInt("O que deseja fazer?\n1 - Comprar\n2 - Adiconar produto\n3 - Alterar a Data\n4 - Sair\n>>>");
 
-            if (option > 3) {
+            if (option > 4) {
                 System.out.println("Erro! Entrada Invalida!");
             }
 
@@ -379,9 +398,13 @@ public class Main {
                 case 2:
                     addProduct(supermercado);
                     break;
+
+                case 3:
+                    setDate(data);
+                    break;
             }
 
-        } while (option != 3);
+        } while (option != 4);
 
 
         System.out.println("Programa terminado!");
