@@ -18,7 +18,7 @@ public class Mobiliario extends Produto {
      * @param precoUnit the price of each unit
      * @param stock     the units in stock
      */
-    public Mobiliario(int id, String nome, float precoUnit, int stock /*,Promocao promo*/) {
+    public Mobiliario(int id, String nome, float precoUnit, int stock) {
         super(id, nome, precoUnit, stock);
     }
 
@@ -28,18 +28,13 @@ public class Mobiliario extends Produto {
      * @param peso the weight of the product
      * @param dimensao the size of the product
      */
-    public Mobiliario(int id,String nome, float precoUnit,int stock /*,Promocao promo*/, float peso, float[] dimensao) {
-        super(id, nome, precoUnit, stock/*, promo*/);
+    public Mobiliario(int id,String nome, float precoUnit,int stock, float peso, float[] dimensao) {
+        super(id, nome, precoUnit, stock);
         this.peso = peso;
         this.dimensao = dimensao;
     }
     
     @Override
-    public float peso() {
-        return peso;
-    }
-
-
     public float getPeso() {
         return peso;
     }

@@ -20,7 +20,7 @@ public class Alimentar extends Produto {
      * @param precoUnit the price of each unit
      * @param stock     the units in stock
      */
-    public Alimentar(int id, String nome, float precoUnit, int stock ) {
+    public Alimentar(int id, String nome, float precoUnit, int stock) {
         super(id, nome, precoUnit, stock);
     }
 
@@ -35,16 +35,12 @@ public class Alimentar extends Produto {
      * @param nCal      the number of calories
      * @param perGord   the percentage of fat
      */
-    public Alimentar(int id, String nome, float precoUnit, int stock ,Promocao promo, int nCal, int perGord) {
+    public Alimentar(int id, String nome, float precoUnit, int stock, int nCal, int perGord) {
 
-        super(id, nome, precoUnit, stock, promo);
+        super(id, nome, precoUnit, stock);
         this.nCal = nCal;
         this.perGord = perGord;
-
-
     }
-    
-   }
 
     public int getnCal() {
         return nCal;

@@ -22,21 +22,36 @@ public class Produto implements Serializable, Cloneable {
      * @param precoUnit the price of each unit
      * @param stock     the units in stock
      */
-    public Produto(int id, String nome, float precoUnit, int stock ,Promocao promo) {
+    public Produto(int id, String nome, float precoUnit, int stock, Promocao promo) {
         this.id = id;
         this.nome = nome;
         this.precoUnit = precoUnit;
         this.stock = stock;
-        this.promo=promo;
+        this.promo = promo;
     }
-    public Produto(int id, String nome, float precoUnit, int stock ) {
+
+
+    /**
+     * Constructor w/ out promotion
+     *
+     * @param id        the id
+     * @param nome      the name of the product
+     * @param precoUnit the price of each unit
+     * @param stock     the units in stock
+     */
+    public Produto(int id, String nome, float precoUnit, int stock) {
         this.id = id;
         this.nome = nome;
         this.precoUnit = precoUnit;
         this.stock = stock;
     }
 
-    public float peso(){
+    /**
+     * Get the weight of the product
+     *
+     * @return the weight of the product
+     */
+    public float getPeso() {
         return 0;
     }
 
@@ -88,7 +103,7 @@ public class Produto implements Serializable, Cloneable {
                 ", preco unidade " + precoUnit +
                 ", existe " + stock;
 
-        if (promo != null) {
+        if (promo == null) {
             return ret;
         }
 
@@ -100,7 +115,7 @@ public class Produto implements Serializable, Cloneable {
     public Object clone() {
         try {
             return super.clone();
-        } catch (CloneNotSupportedException e){
+        } catch (CloneNotSupportedException e) {
             System.out.println("Erro! Impossivel clonar produto!");
             return null;
         }
