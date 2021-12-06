@@ -4,7 +4,7 @@ import promotions.Promocao;
 
 import java.io.Serializable;
 
-public abstract class Produto implements Serializable, Cloneable {
+public class Produto implements Serializable, Cloneable {
     protected int id;
     protected String nome;
     protected float precoUnit;
@@ -36,7 +36,9 @@ public abstract class Produto implements Serializable, Cloneable {
         this.stock = stock;
     }
 
-    public abstract float peso();
+    public float peso(){
+        return 0;
+    }
 
     public int getId() {
         return id;
