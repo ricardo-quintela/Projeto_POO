@@ -10,19 +10,37 @@ public abstract class Promocao implements Serializable {
     protected Date dataExp;
     protected Date dataInc;
 
+
+    /**
+     * Default constructor
+     */
     public Promocao(){};
 
+
+    /**
+     * Constructor
+     *
+     * @param dataExp end date
+     * @param dataInc start date
+     */
     public Promocao(Date dataExp,Date dataInc){
         this.dataExp=dataExp;
         this.dataInc=dataInc;
-
-
     }
 
-    public Promocao(Produto produto,Date dataExp){
+
+    /**
+     * Constructor
+     * @param produto the product
+     * @param dataExp the end date
+     * @param dataInc the start date
+     */
+    public Promocao(Produto produto,Date dataExp, Date dataInc){
         this.dataExp=dataExp;
         this.produto=produto;
+        this.dataInc = dataInc;
     }
+
 
     public Produto getProduto() {
         return produto;
@@ -46,12 +64,14 @@ public abstract class Promocao implements Serializable {
 
     @Override
     public String toString() {
-        return "Promocao{" +
-                "produto=" + produto +
-                ", dataExp=" + dataExp +
-                '}';
+        return " valida de " + dataInc + " a " + dataExp;
     }
 
 
-    public abstract float getDesontoProm(Produto prod);
+    /**
+     * Calculates the price of a product with the promotion
+     *
+     * @param prod the product
+     */
+    public abstract float getDescontoProm(Produto prod);
 }
