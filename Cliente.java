@@ -2,18 +2,22 @@ import data.Email;
 import data.Date;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Cliente implements Serializable {
     private String nome, morada;
     private Email email;
     private int telefone;
     private Date dataNasc;
+    private ArrayList<Compra> compras;
 
 
     /**
      * Default constructor
      */
-    public Cliente() {}
+    public Cliente() {
+        compras = new ArrayList<>();
+    }
 
 
     /**
@@ -25,6 +29,7 @@ public class Cliente implements Serializable {
      * @param dataNasc the client's birthdate
      */
     public Cliente(String nome, String morada, Email email, int telefone, Date dataNasc) {
+        this();
         this.nome = nome;
         this.morada = morada;
         this.email = email;
@@ -73,6 +78,25 @@ public class Cliente implements Serializable {
         this.dataNasc = dataNasc;
     }
 
+    public ArrayList<Compra> getCompras() {
+        return compras;
+    }
+
+    public void setCompras(ArrayList<Compra> compras) {
+        this.compras = compras;
+    }
+
+    public void addCompra(Compra compra){
+        this.compras.add(compra);
+    }
+
+    public void removeCompra(int index){
+        this.compras.remove(index);
+    }
+
+    public void clearCompras(){
+        this.compras.clear();
+    }
 
     @Override
     public String toString() {

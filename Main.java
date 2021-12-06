@@ -4,6 +4,8 @@ import products.Alimentar;
 import products.Limpeza;
 import products.Mobiliario;
 import products.Produto;
+import promotions.Pague3lv4;
+import promotions.PagueMenos;
 
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
@@ -281,7 +283,7 @@ public class Main {
      * @param supermercado the database
      * @return the purchase
      */
-    public static Compra purchase(Cliente cliente, Database supermercado) {
+    public static Compra purchase(Cliente cliente, Database supermercado, Date data) {
         Compra p = new Compra(cliente);
 
         int option;
@@ -331,11 +333,63 @@ public class Main {
         //only purchase if list elements exist
         if (p.getListaProdutos().size() > 0) {
 
-            p.calcCustoFinal(supermercado.getClientesFrequentes());
+            p.calcCustoFinal(supermercado.getClientesFrequentes(), data);
             System.out.println("Fatura:\n" + p);
         }
 
         return p;
+    }
+
+
+    public static void addPromo(Database supermercado) {
+        int option;
+        //chose which promo to add
+        do {
+            option = positiveToInt("Que tipo de promocao deseja adicionar?\n1 - Pague 3, Leve 4\n2 - Pague menos\n>>>");
+
+            if (option < 1 || option > 2) {
+                System.out.println("Erro! Entrada invalida!");
+            }
+
+        } while (option < 1 || option > 2);
+
+
+        Produto produto = null;
+        int id;
+
+        //chose the product id
+        while (produto == null) {
+            id = positiveToInt("Escreva o id do produto >>>");
+
+            //find the product
+            for (Produto product : supermercado.getProdutos()) {
+
+                if (product.getId() == id) {
+                    produto = product;
+                }
+            }
+
+            //product not found
+            if (produto == null) {
+                System.out.println("Erro! Esse produto nao esta registado!");
+            }
+        }
+
+        //create the dates
+        System.out.println("Escreva a data de inicio >>>");
+        Date inc = new Date(positiveToInt("Dia >>>"), positiveToInt("Mes >>>"), positiveToInt("Ano >>>"));
+
+        System.out.println("Escreva a data de fim >>>");
+        Date exp = new Date(positiveToInt("Dia >>>"), positiveToInt("Mes >>>"), positiveToInt("Ano >>>"));
+
+
+        //add the promotion to the product
+        if (option == 1) {
+            produto.setPromo(new Pague3lv4(exp, inc));
+        } else {
+            produto.setPromo(new PagueMenos(exp, inc));
+        }
+
     }
 
 
@@ -383,15 +437,15 @@ public class Main {
         //select what to do in the program
         int option;
         do {
-            option = positiveToInt("O que deseja fazer?\n1 - Comprar\n2 - Adiconar produto\n3 - Alterar a Data\n4 - Sair\n>>>");
+            option = positiveToInt("O que deseja fazer?\n1 - Comprar\n2 - Adiconar produto\n3 - Adicionar promocao\n4 - Alterar a Data\n5 - Ver catalogo\n6 - Ver compras efetuadas\n7 - Sair\n>>>");
 
-            if (option > 4) {
+            if (option > 7) {
                 System.out.println("Erro! Entrada Invalida!");
             }
 
             switch (option) {
                 case 1:
-                    purchase(cliente, supermercado);
+                    cliente.addCompra(purchase(cliente, supermercado, data));
                     break;
 
                 //add a new product to the database
@@ -399,12 +453,34 @@ public class Main {
                     addProduct(supermercado);
                     break;
 
+                //add a new promotion
                 case 3:
+                    addPromo(supermercado);
+                    break;
+
+                //change the date
+                case 4:
                     setDate(data);
+                    break;
+
+                //view the catalog
+                case 5:
+                    System.out.println("Catalogo:\n");
+                    for (Produto p: supermercado.getProdutos()){
+                        System.out.println(p);
+                    }
+                    break;
+
+                //view the purchases of the registered client
+                case 6:
+                    System.out.println("Compras efetuadas por " + cliente.getNome() + ":\n");
+                    for (Compra c: cliente.getCompras()){
+                        System.out.println(c);
+                    }
                     break;
             }
 
-        } while (option != 4);
+        } while (option != 7);
 
 
         System.out.println("Programa terminado!");

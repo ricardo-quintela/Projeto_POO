@@ -4,6 +4,9 @@ import data.Date;
 import data.Email;
 import products.*;
 import files.*;
+import promotions.Pague3lv4;
+import promotions.PagueMenos;
+import promotions.Promocao;
 
 public class Database {
     private ArrayList<Cliente> clientesFrequentes;
@@ -18,7 +21,6 @@ public class Database {
         clientesFrequentes = new ArrayList<>();
         clientesRegulares = new ArrayList<>();
         produtos = new ArrayList<>();
-
     }
 
 
@@ -108,6 +110,7 @@ public class Database {
     }
 
 
+
     /**
      * Saves the contents of the database to a file
      *
@@ -156,6 +159,12 @@ public class Database {
 
     /**
      * Loads the first data from the save file to the program
+     *
+     * <p><strong>CAN LOAD:</strong></p>
+     * <p>Client - (3)</p>
+     * <p>Frequent client (4)</p>
+     * <p>Product (0, 1, 2)</p>
+     * <p>Promotion (5, 6)</p>
      *
      * @param path the path of the save file
      */
@@ -221,6 +230,39 @@ public class Database {
                                         Integer.parseInt(values[6]),
                                         Integer.parseInt(values[7]))));
                         break;
+
+                    //add pague 3 leve 4 promotion
+                    case 5:
+                        //find the product by the id
+                        for (Produto p: produtos){
+
+                            //add the promo to the product
+                            if (p.getId() == Integer.parseInt(values[1])){
+
+                                p.setPromo(new Pague3lv4(new Date(Integer.parseInt(values[2]), Integer.parseInt(values[3]), Integer.parseInt(values[4])),
+                                                         new Date(Integer.parseInt(values[5]), Integer.parseInt(values[6]), Integer.parseInt(values[7]))));
+
+                                break;
+                            }
+                        }
+                        break;
+
+                    //add pague menos promotion
+                    case 6:
+                        //find the product by the id
+                        for (Produto p: produtos){
+
+                            //add the promo to the product
+                            if (p.getId() == Integer.parseInt(values[1])){
+
+                                p.setPromo(new PagueMenos(new Date(Integer.parseInt(values[2]), Integer.parseInt(values[3]), Integer.parseInt(values[4])),
+                                        new Date(Integer.parseInt(values[5]), Integer.parseInt(values[6]), Integer.parseInt(values[7]))));
+
+                                break;
+                            }
+                        }
+                        break;
+
                 }
             } catch (Exception e) {
                 System.out.println("Erro! Occoreu um erro ao ler o ficheiro!");

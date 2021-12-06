@@ -1,3 +1,4 @@
+import data.Date;
 import products.Produto;
 
 import java.util.ArrayList;
@@ -112,16 +113,24 @@ public class Compra {
      * Calculates the final cost of the entire purchase
      *
      * @param clientesFreq the database with the frequent clients
-     * @return the final cost
      */
-    public void calcCustoFinal(ArrayList<Cliente> clientesFreq) {
+    public void calcCustoFinal(ArrayList<Cliente> clientesFreq, Date data) {
         boolean isFreq = clientesFreq.contains(cliente);
         float custoFinal = 0;
         float custoProd;
 
         //calculates the final cost of each product of the list
         for (Produto p : listaProdutos) {
-            custoProd = p.getPrecoUnit() * p.getStock();
+
+            // calculate the cost with the promotion if there is one
+            if (p.getPromo() != null && data.between(p.getPromo().getDataInc(), p.getPromo().getDataExp())){
+                custoProd = p.getPromo().getDescontoProm(p);
+            }
+            //if not the price is normal
+            else{
+                custoProd = p.getPrecoUnit() * p.getStock();
+            }
+
             custoFinal += custoProd;
         }
 
