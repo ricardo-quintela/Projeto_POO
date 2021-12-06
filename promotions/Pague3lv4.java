@@ -18,12 +18,8 @@ public class Pague3lv4 extends Promocao{
     @Override
     public float getDesontoProm(Produto prod) {
 
-        int numProm= prod.getStock() /4;
-        int resto=prod.getStock()%4;
-        int newStock=numProm*3+resto;
-
-
-        return  newStock*prod.getPrecoUnit();
+        int num= prod.getStock() /4;
+        return  (prod.getStock()-num)*prod.getPrecoUnit();
     }
 
 }
