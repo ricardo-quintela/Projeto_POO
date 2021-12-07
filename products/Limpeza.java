@@ -1,8 +1,16 @@
 package products;
 
+/**
+ * Stores the information about a cleaning product
+ *
+ * @author Miguel machado
+ */
 public class Limpeza extends Produto {
     private int grauTox;
 
+    /**
+     * Default constructor
+     */
     public Limpeza() {
     }
 
@@ -35,12 +43,21 @@ public class Limpeza extends Produto {
             this.grauTox = grauTox;
         }
     }
-    
 
+    /**
+     * Access the degree of toxicity
+     *
+     * @return the degree of toxicity
+     */
     public int getGrauTox() {
         return grauTox;
     }
 
+    /**
+     * Define the degree of toxicity
+     *
+     * @param grauTox the degree of toxicity
+     */
     public void setGrauTox(int grauTox) {
         this.grauTox = grauTox;
     }

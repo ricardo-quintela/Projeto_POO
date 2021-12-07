@@ -1,5 +1,10 @@
 package products;
 
+/**
+ * Stores the information about a furniture product
+ *
+ * @author Ricardo Quintela
+ */
 public class Mobiliario extends Produto {
     private float peso;
     private float[] dimensao;
@@ -7,7 +12,8 @@ public class Mobiliario extends Produto {
     /**
      * Default constructor
      */
-    public Mobiliario() {}
+    public Mobiliario() {
+    }
 
 
     /**
@@ -25,28 +31,44 @@ public class Mobiliario extends Produto {
 
     /**
      * Constructor
-     * @param peso the weight of the product
+     *
+     * @param peso     the weight of the product
      * @param dimensao the size of the product
      */
-    public Mobiliario(int id,String nome, float precoUnit,int stock, float peso, float[] dimensao) {
+    public Mobiliario(int id, String nome, float precoUnit, int stock, float peso, float[] dimensao) {
         super(id, nome, precoUnit, stock);
         this.peso = peso;
         this.dimensao = dimensao;
     }
-    
+
     @Override
     public float getPeso() {
         return peso;
     }
 
+    /**
+     * Define the weigth of the product
+     *
+     * @param peso
+     */
     public void setPeso(float peso) {
         this.peso = peso;
     }
 
+    /**
+     * Access the dimensions
+     *
+     * @return the dimensions
+     */
     public float[] getDimensao() {
         return dimensao;
     }
 
+    /**
+     * Define the dimension
+     *
+     * @param dimensao the dimension
+     */
     public void setDimensao(float[] dimensao) {
         this.dimensao = dimensao;
     }

@@ -1,5 +1,10 @@
 package products;
 
+/**
+ * Stores the information about a food product
+ *
+ * @author Miguel Machado
+ */
 public class Alimentar extends Produto {
     private int nCal;
     private int perGord;
@@ -42,18 +47,38 @@ public class Alimentar extends Produto {
         this.perGord = perGord;
     }
 
+    /**
+     * Access the number of calories
+     *
+     * @return the number of calories
+     */
     public int getnCal() {
         return nCal;
     }
 
+    /**
+     * Define the number of calories
+     *
+     * @param nCal the number of calories
+     */
     public void setnCal(int nCal) {
         this.nCal = nCal;
     }
 
+    /**
+     * Access the percentage of fat
+     *
+     * @return the percentage of fat
+     */
     public int getPerGord() {
         return perGord;
     }
 
+    /**
+     * Define the percentage of fat
+     *
+     * @param perGord the percentage of fat
+     */
     public void setPerGord(int perGord) {
         this.perGord = perGord;
     }

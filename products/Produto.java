@@ -4,6 +4,11 @@ import promotions.Promocao;
 
 import java.io.Serializable;
 
+/**
+ * Stores the information about a product
+ *
+ * @author Miguel Machado
+ */
 public class Produto implements Serializable, Cloneable {
     protected int id;
     protected String nome;
@@ -55,42 +60,92 @@ public class Produto implements Serializable, Cloneable {
         return 0;
     }
 
+    /**
+     * Access the id
+     *
+     * @return the id
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Define the id
+     *
+     * @param id the id
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     * Access the name of the product
+     *
+     * @return the name of the product
+     */
     public String getNome() {
         return nome;
     }
 
+    /**
+     * Define the name of the product
+     *
+     * @param nome the name of the product
+     */
     public void setNome(String nome) {
         this.nome = nome;
     }
 
+    /**
+     * Access the price of the product
+     *
+     * @return the price of the product
+     */
     public float getPrecoUnit() {
         return precoUnit;
     }
 
+    /**
+     * Define the price of the product
+     *
+     * @param precoUnit the price of the product
+     */
     public void setPrecoUnit(float precoUnit) {
         this.precoUnit = precoUnit;
     }
 
+    /**
+     * Access the stock of the product
+     *
+     * @return the stock of the product
+     */
     public int getStock() {
         return stock;
     }
 
+    /**
+     * Define the stock
+     *
+     * @param stock the stock
+     */
     public void setStock(int stock) {
         this.stock = stock;
     }
 
+    /**
+     * Access the promotion
+     *
+     * @return the promotion
+     */
     public Promocao getPromo() {
         return promo;
     }
 
+    /**
+     * Define the promotion
+     *
+     * @param promo the promotion
+     */
     public void setPromo(Promocao promo) {
         this.promo = promo;
     }
@@ -101,7 +156,7 @@ public class Produto implements Serializable, Cloneable {
         String ret = nome +
                 " tem codigo " + id +
                 ", preco unidade " + precoUnit +
-                ", existe " + stock;
+                "€, " + stock + " unidades";
 
         if (promo == null) {
             return ret;
