@@ -284,12 +284,18 @@ public class Main {
      * @return the purchase
      */
     public static Compra purchase(Cliente cliente, Database supermercado, Date data) {
-        Compra p = new Compra(cliente);
+        Compra p = new Compra(cliente, data);
 
         int option;
         int quantity;
+        int size;
 
         do {
+            //get the size of the products list
+            size = supermercado.getProdutos().size();
+
+
+            //display a list of products
             String products = "";
             for (int i = 0; i < supermercado.getProdutos().size(); ++i) {
                 products = products.concat("\n" + (i + 1) + " - " + supermercado.getProduto(i));
@@ -328,7 +334,7 @@ public class Main {
                 }
 
             }
-        } while (option < supermercado.getProdutos().size() + 1);
+        } while (option < size + 1);
 
         //only purchase if list elements exist
         if (p.getListaProdutos().size() > 0) {
@@ -397,15 +403,16 @@ public class Main {
      * Sets a new date with user input
      *
      * @param date the previous date
+     * @return the new date
      */
-    public static void setDate(Date date) {
+    public static Date setDate(Date date) {
         System.out.println("Data antiga: " + date);
 
-        date.setDia(positiveToInt("Dia >>>"));
-        date.setMes(positiveToInt("Mes >>>"));
-        date.setAno(positiveToInt("Ano >>>"));
+        Date novaData = new Date(positiveToInt("Dia >>>"), positiveToInt("Mes >>>"), positiveToInt("Ano >>>"));
 
-        System.out.println("Data alterada para " + date);
+        System.out.println("Data alterada para " + novaData);
+
+        return novaData;
     }
 
 
@@ -460,13 +467,13 @@ public class Main {
 
                 //change the date
                 case 4:
-                    setDate(data);
+                    data = setDate(data);
                     break;
 
                 //view the catalog
                 case 5:
                     System.out.println("Catalogo:\n");
-                    for (Produto p: supermercado.getProdutos()){
+                    for (Produto p : supermercado.getProdutos()) {
                         System.out.println(p);
                     }
                     break;
@@ -474,7 +481,7 @@ public class Main {
                 //view the purchases of the registered client
                 case 6:
                     System.out.println("Compras efetuadas por " + cliente.getNome() + ":\n");
-                    for (Compra c: cliente.getCompras()){
+                    for (Compra c : cliente.getCompras()) {
                         System.out.println(c);
                     }
                     break;

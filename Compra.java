@@ -1,14 +1,16 @@
 import data.Date;
 import products.Produto;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class Compra {
+public class Compra implements Serializable {
     private ArrayList<Produto> listaProdutos = new ArrayList<>();
     private Cliente cliente;
     private float precoTrans;
     private float custoTotal;
+    private Date data;
 
     /**
      * Default constructor
@@ -22,9 +24,10 @@ public class Compra {
      *
      * @param cliente the client that made the purchase
      */
-    public Compra(Cliente cliente) {
+    public Compra(Cliente cliente, Date data) {
         this();
         this.cliente = cliente;
+        this.data = data;
     }
 
 
@@ -108,6 +111,13 @@ public class Compra {
         this.precoTrans = precoTrans;
     }
 
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
+    }
 
     /**
      * Calculates the final cost of the entire purchase
@@ -153,7 +163,7 @@ public class Compra {
             produtos = produtos.concat("\n" + getProduto(i).getNome() + " -> " + getProduto(i).getStock() + " - " + (getProduto(i).getStock() * getProduto(i).getPrecoUnit()));
         }
 
-        return "Produtos:\n" + produtos +
+        return "Compra efetuada em " + data + "\n" + produtos +
                 "\nCliente:\n" + cliente +
                 "\n\nTOTAL: " + custoTotal + "\n";
     }
