@@ -3,14 +3,15 @@ package data;
 import java.io.Serializable;
 
 /**
- * <h1> data.Data </h1>
- * Class to easily store a date
+ * Class to easily store a date (format DD/MM/AAAA)
  *
  * <p>Automatically validates the date if the given numbers cannot form a valid date
  *
  * <p>The programmer can use the "set" and "get" methods for all the attributes to fix a erroneous input
  *
- * @author Ricardo Quintela Martins Santos Rosa - 2020220508
+ * <p>The instance of this class can be compared with other instances to check if it's equal or is between a range of 2 other dates</p>
+ *
+ * @author Ricardo Quintela
  */
 public class Date implements Serializable {
     private int dia, mes, ano;
