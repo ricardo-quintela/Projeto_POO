@@ -172,10 +172,37 @@ public class Main {
      * @param type the type of product to create
      * @return the generated product
      */
-    public static Produto genProduct(int type) {
-        int id = positiveToInt("Id do produto >>>");
+    public static Produto genProduct(int type, Database supermercado) {
+        int id;
+        boolean idExists;
+
+        //get the id
+        do {
+            idExists = false;
+
+            //get the id
+            id = positiveToInt("Id do produto >>>");
+
+            //check if the id exists for every product
+            for (Produto p: supermercado.getProdutos()){
+
+                //check if the id already exists
+                if (p.getId() == id){
+                    idExists = true;
+                    System.out.println("Erro! Esse id ja esta registado!");
+                    break;
+                }
+            }
+
+        } while (idExists);
+
+        //get the name
         String nome = getInput("Nome do produto >>>");
+
+        //get the sotck
         int stock = positiveToInt("Unidades em stock >>>");
+
+        //get the price per unit
         float precoUnit = positiveToFloat("Preco por unidade >>>");
 
         //create different types of product
@@ -224,7 +251,7 @@ public class Main {
 
             //add a food product
             case 1:
-                Alimentar a = (Alimentar) genProduct(productType);
+                Alimentar a = (Alimentar) genProduct(productType, supermercado);
                 a.setnCal(positiveToInt("Numero de calorias >>>"));
                 a.setPerGord(positiveToInt("Percentagem de gordura >>>"));
 
@@ -233,7 +260,7 @@ public class Main {
 
             //add a cleaning product
             case 2:
-                Limpeza l = (Limpeza) genProduct(productType);
+                Limpeza l = (Limpeza) genProduct(productType, supermercado);
                 l.setGrauTox(positiveToInt("Grau de toxidade >>>"));
 
                 supermercado.addProduto(l);
@@ -241,7 +268,7 @@ public class Main {
 
             //add a furniture product
             case 3:
-                Mobiliario m = (Mobiliario) genProduct(productType);
+                Mobiliario m = (Mobiliario) genProduct(productType, supermercado);
                 m.setPeso(positiveToFloat("Peso >>>"));
                 m.setDimensao(new float[]{positiveToFloat("Comprimento >>>"), positiveToFloat("Largura >>>"), positiveToFloat("Altura >>>")});
 
