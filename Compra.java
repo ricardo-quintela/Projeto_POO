@@ -4,7 +4,11 @@ import products.Produto;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-
+/**
+ * <p>Stores the information about a purchase</p>
+ *
+ * @author Miguel Machado
+ */
 public class Compra implements Serializable {
     private ArrayList<Produto> listaProdutos = new ArrayList<>();
     private Cliente cliente;
@@ -42,7 +46,11 @@ public class Compra implements Serializable {
         this.cliente = cliente;
     }
 
-
+    /**
+     * Access the list of products
+     *
+     * @return the list of products
+     */
     public ArrayList<Produto> getListaProdutos() {
         return listaProdutos;
     }
@@ -87,34 +95,74 @@ public class Compra implements Serializable {
         listaProdutos.clear();
     }
 
+    /**
+     * Access the total cost
+     *
+     * @return the total cost
+     */
     public float getCustoTotal() {
         return custoTotal;
     }
 
+    /**
+     * Define the total cost of
+     *
+     * @param custoTotal the total cost
+     */
     public void setCustoTotal(float custoTotal) {
         this.custoTotal = custoTotal;
     }
 
+    /**
+     * Access the client
+     *
+     * @return the client
+     */
     public Cliente getCliente() {
         return cliente;
     }
 
+    /**
+     * Define the client
+     *
+     * @param cliente the client
+     */
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
 
+    /**
+     * Access the transportation price
+     *
+     * @return the transportation price
+     */
     public float getPrecoTrans() {
         return precoTrans;
     }
 
+    /**
+     * Define the transportation price
+     *
+     * @param precoTrans the transportation price
+     */
     public void setPrecoTrans(float precoTrans) {
         this.precoTrans = precoTrans;
     }
 
+    /**
+     * Access the date
+     *
+     * @return the date
+     */
     public Date getData() {
         return data;
     }
 
+    /**
+     * Define the date
+     *
+     * @param data the date
+     */
     public void setData(Date data) {
         this.data = data;
     }
@@ -133,12 +181,18 @@ public class Compra implements Serializable {
         for (Produto p : listaProdutos) {
 
             // calculate the cost with the promotion if there is one
-            if (p.getPromo() != null && data.between(p.getPromo().getDataInc(), p.getPromo().getDataExp())){
+            if (p.getPromo() != null && data.between(p.getPromo().getDataInc(), p.getPromo().getDataExp())) {
                 custoProd = p.getPromo().getDescontoProm(p);
             }
             //if not the price is normal
-            else{
+            else {
                 custoProd = p.getPrecoUnit() * p.getStock();
+            }
+
+            //if the product is furniture it has weigth above 0
+            //if that product's weight is above 15 the transportation cost add 10
+            if (p.getPeso() > 15){
+                custoFinal += 10;
             }
 
             custoFinal += custoProd;

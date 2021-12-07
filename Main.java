@@ -11,6 +11,15 @@ import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+
+/**
+ * <h1>Supermarket</h1>
+ * <p>This class allows it's user to buy items from a supermarket</p>
+ * <p>The user has a set of tools to manage his purchases</p>
+ * <p>This class in specific handles the user as well as interactions with instances of other classes</p>
+ *
+ * @author Ricardo Quintela
+ */
 public class Main {
 
     /**
@@ -92,7 +101,7 @@ public class Main {
      */
     public static Cliente login(Database supermercado) {
         Email email = null;
-        System.out.print("----------------\n");
+        System.out.print("Bem vindo a Supermercado Ricardo e Machado mt. Lda.\n");
 
         //get the email input
         do {
@@ -347,6 +356,11 @@ public class Main {
     }
 
 
+    /**
+     * Adds a promotion to a product in the given database with user input
+     *
+     * @param supermercado the database
+     */
     public static void addPromo(Database supermercado) {
         int option;
         //chose which promo to add

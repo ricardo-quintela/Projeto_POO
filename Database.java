@@ -6,8 +6,15 @@ import products.*;
 import files.*;
 import promotions.Pague3lv4;
 import promotions.PagueMenos;
-import promotions.Promocao;
 
+
+/**
+ * <p>Stores the information about clients, frequent clients and products</p>
+ * <p>Allows the programmer to save that information in an object file and also load it from the same object file</p>
+ * <p>The information can also be loaded from a text file. If the file can be parsed the object will be added to the list in memory.</p>
+ *
+ * @author Ricardo Quintela
+ */
 public class Database {
     private ArrayList<Cliente> clientesFrequentes;
     private ArrayList<Cliente> clientesRegulares;
@@ -27,27 +34,56 @@ public class Database {
     //GETTERS AND SETTERS
 
     //CLIENTES FREQUENTES
+
+    /**
+     * Access the frequent clients list
+     *
+     * @return the frequent clients list
+     */
     public ArrayList<Cliente> getClientesFrequentes() {
         return clientesFrequentes;
     }
 
+    /**
+     * Define the frequent clients list
+     *
+     * @param clientesFrequentes the frequent clients list
+     */
     public void setClientesFrequentes(ArrayList<Cliente> clientesFrequentes) {
         this.clientesFrequentes = clientesFrequentes;
     }
 
-
+    /**
+     * Get a frequent client from the list on the given index
+     *
+     * @param index the index of the client
+     * @return the frequent client
+     */
     public Cliente getClienteF(int index) {
         return clientesFrequentes.get(index);
     }
 
+    /**
+     * Add a frequent client to the list
+     *
+     * @param cliente the client on the list
+     */
     public void addClienteF(Cliente cliente) {
         clientesFrequentes.add(cliente);
     }
 
+    /**
+     * Remove a frequent client from the list on the given index
+     *
+     * @param index the index of the client
+     */
     public void removeClienteF(int index) {
         clientesFrequentes.remove(index);
     }
 
+    /**
+     * Clear the frequent clients list
+     */
     public void clearClienteF() {
         clientesFrequentes.clear();
     }
@@ -56,27 +92,56 @@ public class Database {
     //CLIENTES REGULARES
 
 
+    /**
+     * Get a regular client from the list
+     *
+     * @return the regular client
+     */
     public ArrayList<Cliente> getClientesRegulares() {
         return clientesRegulares;
     }
 
+    /**
+     * Define the regular clients list
+     *
+     * @param clientesRegulares the regular clients list
+     */
     public void setClientesRegulares(ArrayList<Cliente> clientesRegulares) {
         this.clientesRegulares = clientesRegulares;
     }
 
 
+    /**
+     * Get a regular client from the list on the given index
+     *
+     * @param index the index of the client
+     * @return the regular client
+     */
     public Cliente getClienteR(int index) {
         return clientesRegulares.get(index);
     }
 
+    /**
+     * Adds a client to the list
+     *
+     * @param cliente the client
+     */
     public void addClienteR(Cliente cliente) {
         clientesRegulares.add(cliente);
     }
 
+    /**
+     * Remmoves a client from the list on the given index
+     *
+     * @param index the index of the client
+     */
     public void removeClienteR(int index) {
         clientesRegulares.remove(index);
     }
 
+    /**
+     * Clears the clients list
+     */
     public void clearClienteR() {
         clientesRegulares.clear();
     }
@@ -84,31 +149,58 @@ public class Database {
 
     //PRODUTOS
 
+    /**
+     * Access the products list
+     *
+     * @return the products list
+     */
     public ArrayList<Produto> getProdutos() {
         return produtos;
     }
 
+    /**
+     * Define the products list
+     *
+     * @param produtos the list of products
+     */
     public void setProdutos(ArrayList<Produto> produtos) {
         this.produtos = produtos;
     }
 
-
+    /**
+     * Get the product from the list on the given index
+     *
+     * @param index the index of the product
+     * @return the product
+     */
     public Produto getProduto(int index) {
         return produtos.get(index);
     }
 
+    /**
+     * Adds a product to the list
+     *
+     * @param produto the product
+     */
     public void addProduto(Produto produto) {
         produtos.add(produto);
     }
 
+    /**
+     * Removes a product from the list on the given index
+     *
+     * @param index the index of the product to remove
+     */
     public void removeProduto(int index) {
         produtos.remove(index);
     }
 
+    /**
+     * Clears the products list
+     */
     public void clearProdutos() {
         produtos.clear();
     }
-
 
 
     /**
@@ -141,7 +233,7 @@ public class Database {
         ObjFileWorker productSaveFile = new ObjFileWorker(produtos);
 
         // only load if the files exist
-        if (! (regularSaveFile.getF().exists() && frequentSaveFile.getF().exists() && productSaveFile.getF().exists())){
+        if (!(regularSaveFile.getF().exists() && frequentSaveFile.getF().exists() && productSaveFile.getF().exists())) {
             return false;
         }
 
@@ -234,13 +326,13 @@ public class Database {
                     //add pague 3 leve 4 promotion
                     case 5:
                         //find the product by the id
-                        for (Produto p: produtos){
+                        for (Produto p : produtos) {
 
                             //add the promo to the product
-                            if (p.getId() == Integer.parseInt(values[1])){
+                            if (p.getId() == Integer.parseInt(values[1])) {
 
                                 p.setPromo(new Pague3lv4(new Date(Integer.parseInt(values[2]), Integer.parseInt(values[3]), Integer.parseInt(values[4])),
-                                                         new Date(Integer.parseInt(values[5]), Integer.parseInt(values[6]), Integer.parseInt(values[7]))));
+                                        new Date(Integer.parseInt(values[5]), Integer.parseInt(values[6]), Integer.parseInt(values[7]))));
 
                                 break;
                             }
@@ -250,10 +342,10 @@ public class Database {
                     //add pague menos promotion
                     case 6:
                         //find the product by the id
-                        for (Produto p: produtos){
+                        for (Produto p : produtos) {
 
                             //add the promo to the product
-                            if (p.getId() == Integer.parseInt(values[1])){
+                            if (p.getId() == Integer.parseInt(values[1])) {
 
                                 p.setPromo(new PagueMenos(new Date(Integer.parseInt(values[2]), Integer.parseInt(values[3]), Integer.parseInt(values[4])),
                                         new Date(Integer.parseInt(values[5]), Integer.parseInt(values[6]), Integer.parseInt(values[7]))));
