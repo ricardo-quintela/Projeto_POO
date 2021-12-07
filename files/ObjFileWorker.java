@@ -2,6 +2,13 @@ package files;
 
 import java.io.*;
 
+/**
+ * <h1>OBJECT FILE WORKER</h1>
+ * <p>This class can be used to easily operate with object files</p>
+ * <p>The programmer can then save and load an object to a file with ease</p>
+ *
+ * @author Ricardo Quintela
+ */
 public class ObjFileWorker {
     private File f;
 
@@ -22,10 +29,20 @@ public class ObjFileWorker {
     }
 
 
+    /**
+     * Access the file
+     *
+     * @return the file
+     */
     public File getF() {
         return f;
     }
 
+    /**
+     * Define the file
+     *
+     * @param path the file
+     */
     public void setF(String path) {
         this.f = new File(path);
     }
@@ -61,7 +78,7 @@ public class ObjFileWorker {
      */
     public Object read() {
         //only read if the file exists
-        if (! this.f.exists()) {
+        if (!this.f.exists()) {
             System.out.println("Erro! Ocorreu um erro ao ler os dados guardados!");
             return null;
         }

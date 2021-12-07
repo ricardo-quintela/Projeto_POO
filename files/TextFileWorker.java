@@ -3,6 +3,14 @@ package files;
 import java.io.*;
 import java.util.ArrayList;
 
+
+/**
+ * <h1>TEXT FILE WORKER</h1>
+ * <p>This class can be used to easily operate with text files</p>
+ * <p>The programmer can then write and read a string to a text file with ease</p>
+ *
+ * @author Ricardo Quintela
+ */
 public class TextFileWorker {
     private File f;
 
@@ -24,10 +32,20 @@ public class TextFileWorker {
     }
 
 
+    /**
+     * Access the file
+     *
+     * @return the file
+     */
     public File getF() {
         return f;
     }
 
+    /**
+     * Define the file
+     *
+     * @param path the file
+     */
     public void setF(String path) {
         this.f = new File(path);
     }
@@ -58,11 +76,12 @@ public class TextFileWorker {
 
     /**
      * Reads the contents of the file
+     *
      * @return the file contents
      */
-    public ArrayList<String> read(){
+    public ArrayList<String> read() {
         //only read if the file exists
-        if (! this.f.exists()) {
+        if (!this.f.exists()) {
             System.out.println("Erro! Ocorreu um erro ao ler os dados guardados!");
             return null;
         }
@@ -74,10 +93,10 @@ public class TextFileWorker {
             //write the text on the file
             do {
                 line = br.readLine();
-                if (line != null){
+                if (line != null) {
                     text.add(line);
                 }
-            }while (line != null);
+            } while (line != null);
 
         } catch (IOException e) {
             text = null;
