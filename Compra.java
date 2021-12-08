@@ -176,6 +176,7 @@ public class Compra implements Serializable {
         boolean isFreq = clientesFreq.contains(cliente);
         float custoFinal = 0;
         float custoProd;
+        boolean isHeavy = false;
 
         //calculates the final cost of each product of the list
         for (Produto p : listaProdutos) {
@@ -192,7 +193,7 @@ public class Compra implements Serializable {
             //if the product is furniture it has weigth above 0
             //if that product's weight is above 15 the transportation cost add 10
             if (p.getPeso() > 15){
-                custoFinal += 10;
+                isHeavy = true;
             }
 
             custoFinal += custoProd;
@@ -203,6 +204,11 @@ public class Compra implements Serializable {
             custoFinal += 15;
         } else if (!isFreq) {
             custoFinal += 20;
+        }
+
+        //add the extra cost for an heavy product
+        if (isHeavy){
+            custoFinal += 10;
         }
 
         this.custoTotal = custoFinal;
