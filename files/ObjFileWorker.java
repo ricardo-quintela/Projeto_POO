@@ -95,7 +95,7 @@ public class ObjFileWorker {
 
         } catch (IOException e) {
             o = null;
-            System.out.println("Erro! Classe nao encontrada!");
+            System.out.println("Erro! Ocorreu um erro a ler o ficheiro!");
 
         }
 
