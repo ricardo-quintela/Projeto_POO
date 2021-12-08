@@ -31,8 +31,8 @@ public class Date implements Serializable {
      */
     public Date(int dia, int mes, int ano) {
         //checks for each argument if they are > 0, sets them to 1 otherwise
-        this.mes = mes > 0 ? mes : 1;
-        this.dia = dia > 0 ? dayCheck(dia, mes) : 1; //checks if the day can belong to the given month
+        this.mes = mes > 0 && mes <= 12 ? mes : 1;
+        this.dia = dayCheck(dia); //checks if the day can belong to the given month
         this.ano = ano > 0 ? ano : 1;
     }
 
@@ -40,15 +40,13 @@ public class Date implements Serializable {
      * Checks if the given day can belong to the given month
      *
      * @param dia - the day
-     * @param mes - the month
      * @return the given day if it possible to be in the month; 1 otherwise
      */
-    private int dayCheck(int dia, int mes) {
+    private int dayCheck(int dia) {
         int[] months = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
         //check if the given day can belong to the given month
-        if (dia > months[mes - 1]) {
-            System.out.println("Erro: data.Data invalida!");
+        if (dia > months[this.mes - 1]) {
             return 1;
         }
         return dia;
