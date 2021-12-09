@@ -364,5 +364,13 @@ public class Database {
 
     }
 
+    @Override
+    public String toString() {
+        return "Base de Dados{" +
+                "clientesFrequentes=" + clientesFrequentes +
+                ", clientesRegulares=" + clientesRegulares +
+                ", produtos=" + produtos +
+                '}';
+    }
 }
 
