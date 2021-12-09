@@ -485,7 +485,7 @@ public class Main {
         Cliente cliente = login(supermercado);
 
         //set the date
-        System.out.println("Introduza a data:");
+        System.out.println("Introduza a data em que se encontra:");
         Date data = setDate();
 
         //select what to do in the program
