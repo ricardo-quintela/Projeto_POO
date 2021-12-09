@@ -443,15 +443,12 @@ public class Main {
     /**
      * Sets a new date with user input
      *
-     * @param date the previous date
      * @return the new date
      */
-    public static Date setDate(Date date) {
-        System.out.println("Data antiga: " + date);
-
+    public static Date setDate() {
         Date novaData = new Date(positiveToInt("Dia >>>"), positiveToInt("Mes >>>"), positiveToInt("Ano >>>"));
 
-        System.out.println("Data alterada para " + novaData);
+        System.out.println("Data definida como " + novaData);
 
         return novaData;
     }
@@ -463,9 +460,6 @@ public class Main {
      * @param args command line args
      */
     public static void main(String[] args) {
-
-        //set the date
-        Date data = new Date(1, 1, 1);
 
         //database
         Database supermercado = new Database();
@@ -481,6 +475,10 @@ public class Main {
 
         //login
         Cliente cliente = login(supermercado);
+
+        //set the date
+        System.out.println("Introduza a data:");
+        Date data = setDate();
 
         //select what to do in the program
         int option;
@@ -508,7 +506,8 @@ public class Main {
 
                 //change the date
                 case 4:
-                    data = setDate(data);
+                    System.out.println("Data antiga: " + data);
+                    data = setDate();
                     break;
 
                 //view the catalog
