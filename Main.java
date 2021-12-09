@@ -184,10 +184,10 @@ public class Main {
             id = positiveToInt("Id do produto >>>");
 
             //check if the id exists for every product
-            for (Produto p: supermercado.getProdutos()){
+            for (Produto p : supermercado.getProdutos()) {
 
                 //check if the id already exists
-                if (p.getId() == id){
+                if (p.getId() == id) {
                     idExists = true;
                     System.out.println("Erro! Esse id ja esta registado!");
                     break;
@@ -320,7 +320,14 @@ public class Main {
      * @return the purchase
      */
     public static Compra purchase(Cliente cliente, Database supermercado, Date data) {
+
+        if (supermercado.getProdutos().size() == 0) {
+            System.out.println("Nao existem produtos disponiveis!");
+            return null;
+        }
+
         Compra p = new Compra(cliente, data);
+        ;
 
         int option;
         int quantity;
@@ -373,11 +380,12 @@ public class Main {
         } while (option < size + 1);
 
         //only purchase if list elements exist
-        if (p.getListaProdutos().size() > 0) {
-
-            p.calcCustoFinal(supermercado.getClientesFrequentes(), data);
-            System.out.println("Fatura:\n" + p);
+        if (p.getListaProdutos().size() == 0) {
+            return null;
         }
+
+        p.calcCustoFinal(supermercado.getClientesFrequentes(), data);
+        System.out.println("Fatura:\n" + p);
 
         return p;
     }
@@ -491,17 +499,29 @@ public class Main {
 
             switch (option) {
                 case 1:
-                    cliente.addCompra(purchase(cliente, supermercado, data));
+                    Compra c = purchase(cliente, supermercado, data);
+
+                    //only add the purchase into the client's register if the purchase exists
+                    if (c != null) {
+                        cliente.addCompra(c);
+                        //save the data on the database savefile
+                        supermercado.saveToFile("src/clientes.obj", "src/clientesFreq.obj", "src/produtos.obj");
+                    }
+
                     break;
 
                 //add a new product to the database
                 case 2:
                     addProduct(supermercado);
+                    //save the data on the database savefile
+                    supermercado.saveToFile("src/clientes.obj", "src/clientesFreq.obj", "src/produtos.obj");
                     break;
 
                 //add a new promotion
                 case 3:
                     addPromo(supermercado);
+                    //save the data on the database savefile
+                    supermercado.saveToFile("src/clientes.obj", "src/clientesFreq.obj", "src/produtos.obj");
                     break;
 
                 //change the date
@@ -512,7 +532,13 @@ public class Main {
 
                 //view the catalog
                 case 5:
+                    //only show catalog if there are products available
+                    if (supermercado.getProdutos().size() == 0) {
+                        System.out.println("Nao existem produtos disponiveis!");
+                        break;
+                    }
                     System.out.println("Catalogo:\n");
+
                     for (Produto p : supermercado.getProdutos()) {
                         System.out.println(p);
                     }
@@ -520,9 +546,16 @@ public class Main {
 
                 //view the purchases of the registered client
                 case 6:
+                    //only view purchases if they exist
+                    if (cliente.getCompras().size() == 0){
+                        System.out.println("Nao existem compras registadas por " + cliente.getNome());
+                        break;
+                    }
+
+                    //show the purchases
                     System.out.println("Compras efetuadas por " + cliente.getNome() + ":\n");
-                    for (Compra c : cliente.getCompras()) {
-                        System.out.println(c);
+                    for (Compra co : cliente.getCompras()) {
+                        System.out.println(co);
                     }
                     break;
             }
